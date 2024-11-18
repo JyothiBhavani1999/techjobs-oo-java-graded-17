@@ -31,6 +31,30 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+    // toString Method
+    @Override
+    public String toString(){
+        String blankLine = System.lineSeparator();
+
+        //if all fields are empty or null except id field
+        if((name == null || name.isEmpty()) &&
+                (employer == null || employer.getValue() == null || employer.getValue().isEmpty()) &&
+                (location == null || location.getValue() == null || location.getValue().isEmpty()) &&
+                (positionType == null || positionType.getValue() == null || positionType.getValue().isEmpty()) &&
+                (coreCompetency == null || coreCompetency.getValue() == null || coreCompetency.getValue().isEmpty())
+        ){
+            return "OOPS! This job does not seem to exist.";
+        }
+
+        return blankLine +
+                "ID: " + id + blankLine
+                +"Name: " + (name == null || name.isEmpty() ? "Data not available" : name ) + blankLine
+                +"Employer: " + (employer == null || employer.getValue().isEmpty() ? "Data not available" : employer.getValue() ) + blankLine
+                +"Location: " + (location == null || location.getValue().isEmpty() ? "Data not available" : location.getValue() ) + blankLine
+                +"Position Type: " + (positionType == null || positionType.getValue().isEmpty() ? "Data not available" : positionType.getValue() ) + blankLine
+                +"Core Competency: " + (coreCompetency == null || coreCompetency.getValue().isEmpty() ? "Data not available" : coreCompetency.getValue() ) + blankLine;
+    }
+
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 

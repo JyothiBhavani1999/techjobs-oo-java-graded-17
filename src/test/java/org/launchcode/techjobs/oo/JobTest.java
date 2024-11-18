@@ -52,7 +52,62 @@ public class JobTest {
     assertFalse(job3.equals(job4));
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        Job job = new Job(
+                "Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence")
+        );
+        String jobToStringMethodFormat = job.toString();  // holds a string value returned from toString method
+        String blankLine = System.lineSeparator(); // new
 
 
 
-}
+        assertEquals(blankLine.charAt(0),jobToStringMethodFormat.charAt(0));
+        assertEquals(blankLine.charAt(blankLine.length() -1),jobToStringMethodFormat.charAt(jobToStringMethodFormat.length() -1));
+
+        //assertTrue(jobToStringMethodFormat.startsWith(blankLine));
+        //assertTrue(jobToStringMethodFormat.endsWith(blankLine));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job job5 = new Job("Product tester",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence"));
+
+        String blankLine = System.lineSeparator();
+
+        String expected = blankLine +
+                "ID: " + job5.getId() + blankLine +
+                "Name: Product tester" + blankLine +
+                "Employer: ACME" + blankLine +
+                "Location: Desert" + blankLine +
+                "Position Type: Quality control" + blankLine +
+                "Core Competency: Persistence" + blankLine;
+
+        assertEquals(expected, job5.toString());
+
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField(){
+
+        Job job5 = new Job("",
+                new Employer(""),
+                new Location(""),
+                new PositionType(""),
+                new CoreCompetency(""));
+
+        assertEquals("OOPS! This job does not seem to exist.", job5.toString());
+    }
+
+
+
+
+    }
